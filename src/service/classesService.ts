@@ -1,9 +1,9 @@
 // services/classesService.ts
-import { classesmodel } from '../model/classes';
+import { classesmodel, Iclasses } from '../model/classes';
 import mongoose from 'mongoose';
 
 class classesService {
-    public async createClass(data: any) {
+    public async createClass(data: Iclasses) {
         const newClass = new classesmodel(data);
         return await newClass.save();
     }
@@ -35,7 +35,7 @@ class classesService {
         return classWithUsers[0];
     }
 
-    public async updateClass(id: string, data: any) {
+    public async updateClass(id: string, data: Iclasses) {
         return await classesmodel.findByIdAndUpdate(id, data, { new: true });
     }
 

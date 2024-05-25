@@ -1,7 +1,13 @@
 import mongoose from "mongoose";
 import { Gender } from "../utils/GenderE";
-
-const userSchema  = new mongoose.Schema(
+export interface Iuser{
+    name : String,
+    age : Number,
+    major: String,
+    gender : String,
+    classes : mongoose.Schema.Types.ObjectId
+}
+const userSchema  = new mongoose.Schema<Iuser>(
     {
         name: {
             type: String,
@@ -30,4 +36,4 @@ const userSchema  = new mongoose.Schema(
         timestamps: true
     });
 
-export const usermodel = mongoose.model("user",userSchema );
+export const usermodel = mongoose.model<Iuser>("user",userSchema );

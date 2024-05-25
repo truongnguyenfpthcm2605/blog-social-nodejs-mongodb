@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
-const classesSchema  = new mongoose.Schema(
+export interface Iclasses {
+    name : string,
+    room : string
+}
+const classesSchema  = new mongoose.Schema<Iclasses>(
     {
         name: {
             type: String,
@@ -17,4 +21,4 @@ const classesSchema  = new mongoose.Schema(
     }
 );
 
-export const classesmodel = mongoose.model("classes", classesSchema );
+export const classesmodel = mongoose.model<Iclasses>("classes", classesSchema );

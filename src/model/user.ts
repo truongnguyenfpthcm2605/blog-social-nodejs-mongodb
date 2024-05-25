@@ -1,5 +1,33 @@
-import {ObjectId} from 'mongodb'
+import mongoose from "mongoose";
+import { Gender } from "../utils/GenderE";
 
-export default class User {
-    constructor(public name: string, public age: number, public major: string, public id?: ObjectId) {}
-}
+const userSchema  = new mongoose.Schema(
+    {
+        name: {
+            type: String,
+            require: true
+        },
+        age: {
+            type: Number,
+            require: true
+        },
+        major: {
+            type: String,
+            require: true
+        },
+        gender : {
+            type: String,
+            enum : Gender,
+            require : true
+        },
+        classes : {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : "classes",
+            require : true
+        }
+    },
+    {
+        timestamps: true
+    });
+
+export const usermodel = mongoose.model("user",userSchema );
